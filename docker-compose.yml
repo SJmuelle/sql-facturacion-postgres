@@ -1,0 +1,12 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./sql/01_esquema.sql:/docker-entrypoint-initdb.d/01.sql
+      - ./sql/02_logica.sql:/docker-entrypoint-initdb.d/02.sql
+      - ./sql/03_vistas.sql:/docker-entrypoint-initdb.d/03.sql
+      - ./sql/04_datos.sql:/docker-entrypoint-initdb.d/04.sql
